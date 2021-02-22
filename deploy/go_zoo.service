@@ -1,0 +1,11 @@
+[Unit]
+Description=go_zoo
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStart=/root/go_zoo/main
+
+[Install]
+WantedBy=multi-user.target
