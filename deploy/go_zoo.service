@@ -5,7 +5,7 @@ Description=go_zoo
 Type=simple
 Restart=always
 RestartSec=5s
-ExecStart=/root/go_zoo/main
+ExecStart=/root/go_zoo/zoo
 
 [Install]
 WantedBy=multi-user.target
