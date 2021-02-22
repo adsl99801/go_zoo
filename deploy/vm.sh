@@ -23,9 +23,10 @@ sudo apt install nginx
 #git clone https://github.com/adsl99801/go_zoo
 #bash go_zoo/deploy/vm.sh
 cd /root/go_zoo
+rm /etc/nginx/sites-enabled/default
 cp deploy/go_zoo.conf /etc/nginx/conf.d
 systemctl reload nginx
 cp deploy/go_zoo.service /lib/systemd/system/go_zoo.service
 env GOOS=linux GOARCH=amd64 go build .
-systemctl go_zoo start
-systemctl go_zoo enable
+systemctl start go_zoo
+systemctl enable go_zoo
