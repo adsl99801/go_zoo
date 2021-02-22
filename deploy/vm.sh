@@ -22,6 +22,7 @@ sudo apt install nginx
 
 #git clone https://github.com/adsl99801/go_zoo
 #bash go_zoo/deploy/vm.sh
+# 環境需要4G
 cd /root/go_zoo
 rm /etc/nginx/sites-enabled/default
 cp deploy/go_zoo.conf /etc/nginx/conf.d
