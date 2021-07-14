@@ -8,7 +8,7 @@ RestartSec=5s
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=go_zoo
-ExecStart=/root/go_zoo/zoo
+ExecStart=/home/keith/go_zoo/zoo
 Environment=MYENV=MYENV1
 [Install]
 WantedBy=multi-user.target

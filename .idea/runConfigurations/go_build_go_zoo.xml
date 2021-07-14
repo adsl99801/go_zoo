@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go build go_zoo" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+    <module name="zoo" />
+    <working_directory value="$PROJECT_DIR$" />
+    <go_parameters value="-i" />
+    <kind value="FILE" />
+    <filePath value="$PROJECT_DIR$/main.go" />
+    <package value="github.com/adsl99801/zoo" />
+    <directory value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

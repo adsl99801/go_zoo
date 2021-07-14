@@ -9,9 +9,9 @@ sudo apt-get update
 sudo apt-get -y install postgresql-13
 
 #go
-sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt-get update
-sudo apt install golang-go
+#sudo add-apt-repository ppa:longsleep/golang-backports
+#sudo apt-get update
+#sudo apt install golang-go
 
 #nginx
 sudo apt install curl gnupg2 ca-certificates lsb-release
@@ -23,7 +23,7 @@ sudo apt install nginx
 #git clone https://github.com/adsl99801/go_zoo
 #bash go_zoo/deploy/vm.sh
 # 環境需要4G
-cd /root/go_zoo
+cd /home/keith/go_zoo
 rm /etc/nginx/sites-enabled/default
 cp deploy/go_zoo.conf /etc/nginx/conf.d
 systemctl reload nginx
