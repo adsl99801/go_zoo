@@ -1,7 +1,10 @@
 package main
 
 import (
-	"github.com/adsl99801/zoo/controller"
+	"log"
+	"net/http"
+
+	account "github.com/adsl99801/zoo/controller"
 	"github.com/adsl99801/zoo/ig"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -20,5 +23,7 @@ func main() {
 	e.GET("/", account.Home)
 	// servers other static files
 	// Start server
-	e.Logger.Fatal(e.Start(":8080"))
+	if err := e.StartTLS(":443", "/etc/letsencrypt/live/puppys.fun/fullchain.pem", "/etc/letsencrypt/live/puppys.fun/privkey.pem"); err != http.ErrServerClosed {
+		log.Fatal(err)
+	}
 }
