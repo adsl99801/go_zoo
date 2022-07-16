@@ -31,3 +31,6 @@ cp deploy/go_zoo.service /lib/systemd/system/go_zoo.service
 env GOOS=linux GOARCH=amd64 go build .
 systemctl start go_zoo
 systemctl enable go_zoo
+
+timedatectl set-timezone Asia/Taipei
+
