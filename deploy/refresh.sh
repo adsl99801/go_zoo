@@ -3,3 +3,4 @@ sudo nginx -t
 sudo nginx -s reload
 sudo systemctl stop go_zoo
 go build
+sudo systemctl start go_zoo
