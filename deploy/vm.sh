@@ -15,8 +15,8 @@ sudo apt-get -y install postgresql-13
 
 #nginx
 sudo apt install curl gnupg2 ca-certificates lsb-release
-echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
-    | sudo tee /etc/apt/sources.list.d/nginx.list
+echo "deb http://nginx.org/packages/ubuntu $(lsb_release -cs) nginx" |
+    sudo tee /etc/apt/sources.list.d/nginx.list
 sudo apt update
 sudo apt install nginx
 
@@ -33,4 +33,5 @@ systemctl start go_zoo
 systemctl enable go_zoo
 
 timedatectl set-timezone Asia/Taipei
-
+# scp -r web/dist/puppysfun keith@192.168.0.104:/home/keith/puppys.fun
+# sudo cp -r puppys.fun /var/www/

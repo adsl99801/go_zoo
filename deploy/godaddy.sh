@@ -20,7 +20,7 @@
 # Get the Production API key/secret from https://developer.godaddy.com/keys/.
 # Ensure it's for "Production" as first time it's created for "Test".
 Key=fXqGJ1NYZGGa_6tjqS4BvJ9UB9MS9LFfYck
-Secret=
+Secret=4tbcPkbMNnErUgt4KTWTGt
 
 # Domain to update.
 Domain=puppys.fun
@@ -47,14 +47,15 @@ CheckURL=http://api.ipify.org
 # This variable will be evaluated at runtime but will not be parsed for errors nor execution guaranteed.
 # Take note of the single quotes. If it's a script, ensure it's executable i.e. chmod 755 ./script.
 # Example: SuccessExec='/bin/echo "$(date): My public IP changed to ${PublicIP}!">>/var/log/GoDaddy.sh.log'
-SuccessExec=''
 
 # Optional scripts/programs/commands to execute on update failure. Leave blank to disable.
 # This variable will be evaluated at runtime but will not be parsed for errors nor execution guaranteed.
 # Take note of the single quotes. If it's a script, ensure it's executable i.e. chmod 755 ./script.
 # Example: FailedExec='/some/path/something-went-wrong.sh ${Update} && /some/path/email-script.sh ${PublicIP}'
-FailedExec=''
 # End settings
+SuccessExec='echo $(date): My public IP changed to ${PublicIP}! >> /home/keith/log/GoDaddy_sh.log'
+FailedExec='echo "$(date): ${Update}!">>/home/keith/log/GoDaddy_sh_fail.log'
+NoNeedExec='echo "$(date):NoNeedExec">>/home/keith/log/GoDaddy_sh.log'
 
 Curl=$(/usr/bin/which curl 2>/dev/null)
 Touch=$(/usr/bin/which touch 2>/dev/null)
@@ -73,7 +74,7 @@ ${Touch} ${CachedIP} 2>/dev/null
 [ -z "${CheckURL}" ] && CheckURL=http://api.ipify.org
 echo -n "Checking current 'Public IP' from '${CheckURL}'..."
 PublicIP=$(${Curl} -kLs ${CheckURL})
-if [ $? -eq 0 ] && [[ "${PublicIP}" =~ [0-9]{1,3}\.[0-9]{1,3} ]];then
+if [ $? -eq 0 ] ;then
   echo "${PublicIP}!"
 else
   echo "Fail! ${PublicIP}"
@@ -106,6 +107,6 @@ if [ "$(cat ${CachedIP} 2>/dev/null)" != "${PublicIP}" ];then
     fi
   fi
 else
-  echo "Current 'Public IP' matches 'Cached IP' recorded. No update required!"
+   eval ${NoNeedExec}
 fi
 exit $?

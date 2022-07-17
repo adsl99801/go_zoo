@@ -1,9 +1,11 @@
 .app {
-    height: 100vh;
-    background-image: url("../assets/img/IMG_0473.JPG");
-    // background-color: #cccccc;
-  }
-  .title{
-color:white;
-padding:20px;
-  }
+  height: 100vh;
+  background-image: url("../assets/img/IMG_0473.JPG");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.title {
+  color: white;
+  padding: 20px;
+}

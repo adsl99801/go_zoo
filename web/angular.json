@@ -30,9 +30,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss", "node_modules/ng-devui/devui.min.css"],
             "scripts": []
           },
           "configurations": {
