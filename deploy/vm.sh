@@ -26,6 +26,9 @@ sudo systemctl start nginx
 scp -r web/dist/puppysfun keith@192.168.0.104:/home/keith/puppys.fun
 sudo cp -r puppys.fun /var/www/
 
+cp deploy/godaddy.sh /etc/cron.daily/godaddy
+cp deploy/limits.conf /etc/security/limits.conf
+cp deploy/sshd_config /etc/ssh/sshd_config
 #git clone https://github.com/adsl99801/go_zoo
 #bash go_zoo/deploy/vm.sh
 # 環境需要4G
