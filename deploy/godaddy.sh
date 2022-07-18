@@ -1,5 +1,5 @@
 #!/bin/bash
-
+mkdir /home/keith/log
 # GoDaddy.sh v1.0 by Nazar78 @ TeaNazaR.com
 ###########################################
 # Simple DDNS script to update GoDaddy's DNS. Just schedule every 5mins in crontab.
@@ -60,11 +60,11 @@ NoNeedExec='echo "$(date):NoNeedExec">>/home/keith/log/GoDaddy_sh.log'
 Curl=$(/usr/bin/which curl 2>/dev/null)
 Touch=$(/usr/bin/which touch 2>/dev/null)
 [ "${Curl}" = "" ] &&
-echo "Error: Unable to find 'curl CLI'." && exit 1
+  echo "Error: Unable to find 'curl CLI'." && exit 1
 [ -z "${Key}" ] || [ -z "${Secret}" ] &&
-echo "Error: Requires API 'Key/Secret' value." && exit 1
+  echo "Error: Requires API 'Key/Secret' value." && exit 1
 [ -z "${Domain}" ] &&
-echo "Error: Requires 'Domain' value." && exit 1
+  echo "Error: Requires 'Domain' value." && exit 1
 [ -z "${Type}" ] && Type=A
 [ -z "${Name}" ] && Name=@
 [ -z "${TTL}" ] && TTL=600
@@ -74,30 +74,30 @@ ${Touch} ${CachedIP} 2>/dev/null
 [ -z "${CheckURL}" ] && CheckURL=http://api.ipify.org
 echo -n "Checking current 'Public IP' from '${CheckURL}'..."
 PublicIP=$(${Curl} -kLs ${CheckURL})
-if [ $? -eq 0 ] ;then
+if [ $? -eq 0 ]; then
   echo "${PublicIP}!"
 else
   echo "Fail! ${PublicIP}"
   eval ${FailedExec}
   exit 1
 fi
-if [ "$(cat ${CachedIP} 2>/dev/null)" != "${PublicIP}" ];then
+if [ "$(cat ${CachedIP} 2>/dev/null)" != "${PublicIP}" ]; then
   echo -n "Checking '${Domain}' IP records from 'GoDaddy'..."
   Check=$(${Curl} -kLsH"Authorization: sso-key ${Key}:${Secret}" \
-  -H"Content-type: application/json" \
-  https://api.godaddy.com/v1/domains/${Domain}/records/${Type}/${Name} \
-  2>/dev/null|jq -r '.[0].data')
-  if [ $? -eq 0 ] && [ "${Check}" = "${PublicIP}" ];then
-    echo -n ${Check}>${CachedIP}
+    -H"Content-type: application/json" \
+    https://api.godaddy.com/v1/domains/${Domain}/records/${Type}/${Name} \
+    2>/dev/null | jq -r '.[0].data')
+  if [ $? -eq 0 ] && [ "${Check}" = "${PublicIP}" ]; then
+    echo -n ${Check} >${CachedIP}
     echo -e "unchanged!\nCurrent 'Public IP' matches 'GoDaddy' records. No update required!"
   else
     echo -en "changed!\nUpdating '${Domain}' ${Check} -> ${PublicIP}..."
     Update=$(${Curl} -kLsXPUT -H"Authorization: sso-key ${Key}:${Secret}" \
-    -H"Content-type: application/json" \
-    https://api.godaddy.com/v1/domains/${Domain}/records/${Type}/${Name} \
-    -d "[{\"data\":\"${PublicIP}\",\"ttl\":${TTL}}]" 2>/dev/null)
-    if [ $? -eq 0 ] && [ "${Update}" = "" ];then
-      echo -n ${PublicIP}>${CachedIP}
+      -H"Content-type: application/json" \
+      https://api.godaddy.com/v1/domains/${Domain}/records/${Type}/${Name} \
+      -d "[{\"data\":\"${PublicIP}\",\"ttl\":${TTL}}]" 2>/dev/null)
+    if [ $? -eq 0 ] && [ "${Update}" = "" ]; then
+      echo -n ${PublicIP} >${CachedIP}
       echo "Success!"
       eval ${SuccessExec}
     else
@@ -107,6 +107,6 @@ if [ "$(cat ${CachedIP} 2>/dev/null)" != "${PublicIP}" ];then
     fi
   fi
 else
-   eval ${NoNeedExec}
+  eval ${NoNeedExec}
 fi
 exit $?
