@@ -37,7 +37,7 @@ Name=@
 TTL=600
 
 # Writable path to last known Public IP record cached. Best to place in tmpfs.
-CachedIP=/tmp/current_ip
+CachedIP=/home/keith/log/CachedIP
 
 # External URL to check for current Public IP, must contain only a single plain text IP.
 # Default http://api.ipify.org.
