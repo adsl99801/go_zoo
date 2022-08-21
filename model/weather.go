@@ -30,7 +30,7 @@ Table: weather
 
 JSON Sample
 -------------------------------------
-{    "city": "GvlOAlNcJFnKjcdLOftIHLFaa",    "temp_lo": 10,    "temp_hi": 3,    "prcp": 0.3908756343112269,    "date": "2078-02-23T16:45:19.407186359+08:00"}
+{    "city": "kApwDiAEDwOcuMDhmNILekkIs",    "temp_lo": 80,    "temp_hi": 2,    "prcp": 0.8808493878235294,    "date": "2043-12-04T15:36:04.730592613+08:00"}
 
 
 Comments

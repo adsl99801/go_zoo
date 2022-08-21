@@ -5,7 +5,6 @@ import (
 
 	"github.com/adsl99801/zoo/controller"
 	"github.com/adsl99801/zoo/dao"
-	"github.com/adsl99801/zoo/ig"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
@@ -14,8 +13,11 @@ import (
 	gorm "github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
-
+const (
+	apiUrlStr = "api"
+)
 func main() {
+	
 	e := echo.New()
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
@@ -28,13 +30,11 @@ func main() {
         log.Fatalln(err)
     }
 	dao.DB = db;
-	e.GET("/igAuth", ig.IgAuth)
-	e.GET("/users", controller.GetAllUsers)
-	e.POST("/users", controller.CreateUser)
-	e.GET("/users/:id", controller.GetUser)
-	e.PUT("/users/:id", controller.UpdateUser)
-	e.DELETE("/users/:id", controller.DeleteUser)
+	apiPost(e,"/Login",controller.Login);
 	e.Static("/", "public")
 	e.File("/", "public/index.html")
 	e.Logger.Fatal(e.Start(":8080"))
+}
+func apiPost(e *echo.Echo,urlStr  string, h echo.HandlerFunc){
+	e.POST(apiUrlStr+urlStr, h)
 }

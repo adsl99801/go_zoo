@@ -13,7 +13,13 @@ var (
 	users = map[int]*model.User{}
 	seq   = 1
 )
-
+func Login(c echo.Context) error {
+	u := new(model.Account)
+	if err := c.Bind(u); err != nil {
+		return err
+	}
+	return c.JSON(http.StatusOK, u)
+}
 //----------
 // Handlers
 //----------
@@ -58,7 +64,4 @@ func GetAllUsers(c echo.Context) error {
 }
 func Home(c echo.Context) error {
 	return c.String(http.StatusOK, "Home")
-}
-func Login(c echo.Context) error {
-	return c.String(http.StatusOK, "Login")
 }

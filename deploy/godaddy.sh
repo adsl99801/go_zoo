@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir /home/keith/log
+mkdir -p /home/keith/log
 # GoDaddy.sh v1.0 by Nazar78 @ TeaNazaR.com
 ###########################################
 # Simple DDNS script to update GoDaddy's DNS. Just schedule every 5mins in crontab.

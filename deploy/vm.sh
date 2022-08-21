@@ -55,4 +55,4 @@ sudo systemctl enable go_zoo
 # GRANT ALL PRIVILEGES ON DATABASE pf to pfuser;
 # psql -h 192.168.0.104 -U pfuser -d pf -W
 
-# gen --sqltype=postgres --connstr "user=pfuser password=pfuser host=192.168.0.104 dbname=pf" --database pf --module=github.com/adsl99801/zoo --json --gorm --generate-dao --api=api --overwrite
+# gen --sqltype=postgres --connstr "user=pfuser password=pfuser host=192.168.0.104 dbname=pf" --database pf --module=github.com/adsl99801/zoo --json --gorm --generate-dao --api=api --dao=dao  --grpc=grpc -v --overwrite
